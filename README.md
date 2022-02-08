@@ -56,3 +56,6 @@ Deployed policies
 Deployed initiative containing all policies
 
 ![PolicyPackage2](./media/initiative.png)
+
+## Credit
+Special thanks to [Stefan](https://github.com/StefanIvemo) and [Simon](https://github.com/SimonWahlin) for all their Bicep knowledge.
