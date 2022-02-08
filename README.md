@@ -4,7 +4,6 @@ This repository is to help you get started with deploying and managing Private E
 ## What are Private Endpoints?
 Private Endpoints connects your existing PaaS services in Azure to a virtual network, allowing other services inside Azure or on-premises to connect to the Private Endpoint enabled services over your private network. Enabling Private Endpoint on a service does not give it outbound connectivity, it only handles inbound.
 
-<br/>
 
 ## Deploy Private Link DNS Zones
 To get started you'll first need to deploy all the private DNS zones for the services you require. Remove the zones you don't need from the `deploy-privatelink-zones\dns.parameters.json` file, or deploy them all at once.
@@ -12,15 +11,12 @@ To get started you'll first need to deploy all the private DNS zones for the ser
 - Deploy zones to resource group, replace **ResourceGroupName** with your own
   - `New-AzResourceGroupDeployment -ResourceGroupName central-dns-rg -TemplateFile .\deploy-privatelink-zones\dns.bicep -TemplateParameterFile .\deploy-privatelink-zones\dns.parameters.json`
 
-<br/>
 
 ### Create links to virtual networks
 Once the zones are created you'll need to create virtual network links for each zone to your virtual networks that host services that should be able to resolve the Private Endpoints to their Private IPs. Doing this by hand for each zone can be very time consuming, instead add the required virtual networks in the `deploy-privatelink-zones\dns.parameters.json` file and redeploy every time a new network is in need of the links.
 
 - Give your link a name
 - Add the virtual network resource id
-  
-  <br/>
 
   ![DnsVnetLink](./media/dnslink.png)
 
@@ -31,7 +27,6 @@ Once the zones are created you'll need to create virtual network links for each 
   
   ![DnsVnetLink2](./media/dnslink2.png)
 
-<br/>
 
 ## Manage Private Endpoints using Azure Policy
 Now that the zones and links are in place we want an automated and reliable way of creating the DNS records for each Private Endpoint that you enable for your different Azure services. Provided here is a complete policy package that takes care of all the services.
