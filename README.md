@@ -13,7 +13,13 @@ To get started you'll first need to deploy all the private DNS zones for the ser
 - Deploy zones to resource group, replace **ResourceGroupName** with your own
 
   ```PowerShell
-  New-AzResourceGroupDeployment -ResourceGroupName central-dns-rg -TemplateFile .\deploy-privatelink-zones\dns.bicep -TemplateParameterFile .\deploy-privatelink-zones\dns.parameters.json
+  $Params = @{
+      ResourceGroupName = 'central-dns-rg'
+      TemplateFile = '.\deploy-privatelink-zones\dns.bicep'
+      TemplateParameterFile = '.\deploy-privatelink-zones\dns.parameters.json'
+  }
+
+  New-AzResourceGroupDeployment @Params
   ```
 
 ### Create links to virtual networks
@@ -28,7 +34,13 @@ Once the zones are created you'll need to create virtual network links for each 
 - Deploy to add virtual network links
 
   ```PowerShell
-  New-AzResourceGroupDeployment -ResourceGroupName central-dns-rg -TemplateFile .\deploy-privatelink-zones\dns.bicep -TemplateParameterFile .\deploy-privatelink-zones\dns.parameters.json
+  $Params = @{
+      ResourceGroupName = 'central-dns-rg'
+      TemplateFile = '.\deploy-privatelink-zones\dns.bicep'
+      TemplateParameterFile = '.\deploy-privatelink-zones\dns.parameters.json'
+  }
+
+  New-AzResourceGroupDeployment @Params
   ```
   
   <br/>
@@ -51,7 +63,13 @@ Now that the zones and links are in place we want an automated and reliable way 
 - Deploy policy package, replace **ManagementGroupId** with your own
 
   ```PowerShell
-  New-AzManagementGroupDeployment -ManagementGroupId mg-policy -TemplateFile .\policy-package\main.bicep -TemplateParameterFile .\policy-package\main.parameters.json
+  $Params = @{
+      ManagementGroupId = 'mg-policy'
+      TemplateFile = '.\policy-package\main.bicep'
+      TemplateParameterFile = '.\policy-package\main.parameters.json'
+  }
+
+  New-AzManagementGroupDeployment @Params
   ```
 
 - Assign your newly created initiative
