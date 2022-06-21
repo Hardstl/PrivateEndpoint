@@ -67,6 +67,7 @@ Now that the zones and links are in place we want an automated and reliable way 
       ManagementGroupId = 'mg-policy'
       TemplateFile = '.\policy-package\main.bicep'
       TemplateParameterFile = '.\policy-package\main.parameters.json'
+      Location = 'westeurope'
   }
 
   New-AzManagementGroupDeployment @Params
