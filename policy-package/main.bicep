@@ -1,275 +1,24 @@
-// ---------------[Initialisations]----------
+// ---------------[INITIALISATIONS]----------
 targetScope = 'managementGroup'
 
-
 // ---------------[PARAMETERS]---------------
-param location string
+param location string = deployment().location
 
+@description('Provide id of subscription where the privatelink DNS zones are located.')
 param privateLinkZonesSubscriptionId string
+
+@description('Provide name of the resource group where the privatelink DNS zones are located.')
 param privateLinkZonesResourceGroup string
 
+@description('Define a name for your policy initiative.')
 param policyInitiativeName string
-
 
 // ---------------[VARIABLES]----------------
 var privateLinkZonesLocation = '/subscriptions/${privateLinkZonesSubscriptionId}/resourceGroups/${privateLinkZonesResourceGroup}/providers/Microsoft.Network/privateDnsZones'
-
-var policySettings = [
-  {
-    name: 'Automation Webhook'
-    value: 'Webhook'
-    zone: 'privatelink.azure-automation.net'
-  }
-  {
-    name: 'Automation DSCAndHybridWorker'
-    value: 'DSCAndHybridWorker'
-    zone: 'privatelink.azure-automation.net'
-  }
-  {
-    name: 'Sql Server'
-    value: 'sqlServer'
-    zone: 'privatelink.database.windows.net'
-  }
-  {
-    name: 'Synapse Sql'
-    value: 'sql'
-    zone: 'privatelink.sql.azuresynapse.net'
-  }
-  {
-    name: 'Synapse Sql On Demand'
-    value: 'sqlOnDemand'
-    zone: 'privatelink.sql.azuresynapse.net'
-  }
-  {
-    name: 'Synapse Dev'
-    value: 'dev'
-    zone: 'privatelink.dev.azuresynapse.net'
-  }
-  {
-    name: 'Synapse Studio'
-    value: 'web'
-    zone: 'privatelink.azuresynapse.net'
-  }
-  {
-    name: 'Storage Blob'
-    value: 'blob'
-    zone: 'privatelink.blob.core.windows.net'
-  }
-  {
-    name: 'Storage Table'
-    value: 'table'
-    zone: 'privatelink.table.core.windows.net'
-  }
-  {
-    name: 'Storage Queue'
-    value: 'queue'
-    zone: 'privatelink.queue.core.windows.net'
-  }
-  {
-    name: 'Storage File'
-    value: 'file'
-    zone: 'privatelink.file.core.windows.net'
-  }
-  {
-    name: 'Storage Web'
-    value: 'web'
-    zone: 'privatelink.web.core.windows.net'
-  }
-  {
-    name: 'Data Lake File System'
-    value: 'dfs'
-    zone: 'privatelink.dfs.core.windows.net'
-  }
-  {
-    name: 'Cosmos Sql'
-    value: 'sql'
-    zone: 'privatelink.documents.azure.com'
-  }
-  {
-    name: 'Cosmos MongoDB'
-    value: 'MongoDB'
-    zone: 'privatelink.mongo.cosmos.azure.com'
-  }
-  {
-    name: 'Cosmos Cassandra'
-    value: 'Cassandra'
-    zone: 'privatelink.cassandra.cosmos.azure.com'
-  }
-  {
-    name: 'Cosmos Gremlin'
-    value: 'Gremlin'
-    zone: 'privatelink.gremlin.cosmos.azure.com'
-  }
-  {
-    name: 'Cosmos Table'
-    value: 'Table'
-    zone: 'privatelink.table.cosmos.azure.com'
-  }
-  {
-    name: 'PostgreSQL'
-    value: 'postgresqlServer'
-    zone: 'privatelink.postgres.database.azure.com'
-  }
-  {
-    name: 'MySQL'
-    value: 'mysqlServer'
-    zone: 'privatelink.mysql.database.azure.com'
-  }
-  {
-    name: 'MariaDB'
-    value: 'mariadbServer'
-    zone: 'privatelink.mariadb.database.azure.com'
-  }
-  {
-    name: 'Key Vault'
-    value: 'vault'
-    zone: 'privatelink.vaultcore.azure.net'
-  }
-  {
-    name: 'Azure Search'
-    value: 'searchService'
-    zone: 'privatelink.search.windows.net'
-  }
-  {
-    name: 'Container Registry'
-    value: 'registry'
-    zone: 'privatelink.azurecr.io'
-  }
-  {
-    name: 'App Configuration'
-    value: 'configurationStores'
-    zone: 'privatelink.azconfig.io'
-  }
-  {
-    name: 'Event Hubs'
-    value: 'namespace'
-    zone: 'privatelink.servicebus.windows.net'
-  }
-  {
-    name: 'Service Bus'
-    value: 'namespace'
-    zone: 'privatelink.servicebus.windows.net'
-  }
-  {
-    name: 'IoT Hub Devices'
-    value: 'iotHub'
-    zone: 'privatelink.azure-devices.net'
-  }
-  {
-    name: 'IoT Hub Servicebus'
-    value: 'iotHub'
-    zone: 'privatelink.servicebus.windows.net'
-  }
-  {
-    name: 'Relay'
-    value: 'namespace'
-    zone: 'privatelink.servicebus.windows.net'
-  }
-  {
-    name: 'Event Grid Topic'
-    value: 'topic'
-    zone: 'privatelink.eventgrid.azure.net'
-  }
-  {
-    name: 'Event Grid Domain'
-    value: 'domain'
-    zone: 'privatelink.eventgrid.azure.net'
-  }
-  {
-    name: 'Web Apps'
-    value: 'sites'
-    zone: 'privatelink.azurewebsites.net'
-  }
-  {
-    name: 'Machine Learning API'
-    value: 'amlworkspace'
-    zone: 'privatelink.api.azureml.ms'
-  }
-  {
-    name: 'Machine Learning Notebook'
-    value: 'amlworkspace'
-    zone: 'privatelink.notebooks.azure.net'
-  }
-  {
-    name: 'SignalR'
-    value: 'signalR'
-    zone: 'privatelink.service.signalr.net'
-  }
-  {
-    name: 'Monitor'
-    value: 'azuremonitor'
-    zone: 'privatelink.monitor.azure.com'
-  }
-  {
-    name: 'Monitor OMS'
-    value: 'azuremonitor'
-    zone: 'privatelink.oms.opinsights.azure.com'
-  }
-  {
-    name: 'Monitor ODS'
-    value: 'azuremonitor'
-    zone: 'privatelink.ods.opinsights.azure.com'
-  }
-  {
-    name: 'Monitor AgentSvc'
-    value: 'azuremonitor'
-    zone: 'privatelink.agentsvc.azure-automation.net'
-  }
-  {
-    name: 'Monitor Blob'
-    value: 'azuremonitor'
-    zone: 'privatelink.blob.core.windows.net'
-  }
-  {
-    name: 'Cognitive Services'
-    value: 'account'
-    zone: 'privatelink.cognitiveservices.azure.com'
-  }
-  {
-    name: 'Azure File Sync'
-    value: 'afs'
-    zone: 'privatelink.afs.azure.net'
-  }
-  {
-    name: 'Data Factory'
-    value: 'dataFactory'
-    zone: 'privatelink.datafactory.azure.net'
-  }
-  {
-    name: 'Cache for Redis'
-    value: 'redisCache'
-    zone: 'privatelink.redis.cache.windows.net'
-  }
-  {
-    name: 'Cache for Redis Enterprise'
-    value: 'redisCache'
-    zone: 'privatelink.redisenterprise.cache.azure.net'
-  }
-  {
-    name: 'Purview Account'
-    value: 'account'
-    zone: 'privatelink.purview.azure.com'
-  }
-  {
-    name: 'Purview Portal'
-    value: 'portal'
-    zone: 'privatelink.purviewstudio.azure.com'
-  }
-  {
-    name: 'Digital Twins'
-    value: 'digitalTwinsInstances'
-    zone: 'privatelink.digitaltwins.azure.net'
-  }
-  {
-    name: 'HDInsights'
-    value: 'cluster'
-    zone: 'privatelink.azurehdinsight.net'
-  }
-]
-
+var policyDefinitionSettings = json(loadTextContent('policyDefinitionSettings.json'))
 
 // ---------------[RESOURCES]----------------
-resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2020-09-01' = [for subresource in policySettings: {
+resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2021-06-01' = [for subresource in policyDefinitionSettings: {
   name: replace('DeployDNSFor${subresource.name}', ' ', '')
   properties: {
     displayName: 'Deploy DNS for ${subresource.name}'
@@ -278,7 +27,7 @@ resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2020-09-01'
     metadata: {
       category: 'Custom'
       source: 'Bicep'
-      version: '0.1.0'
+      version: '0.2.0'
     }
     parameters: {
       privateDnsZoneId: {
@@ -295,6 +44,10 @@ resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2020-09-01'
           {
             field: 'type'
             equals: 'Microsoft.Network/privateEndpoints'
+          }
+          {
+            field: 'Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].privateLinkServiceId'
+            contains: subresource.type
           }
           {
             count: {
@@ -370,7 +123,7 @@ resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2020-09-01'
   }
 }]
 
-resource policyInitiative 'Microsoft.Authorization/policySetDefinitions@2020-09-01' = {
+resource policyInitiative 'Microsoft.Authorization/policySetDefinitions@2021-06-01' = {
   name: policyInitiativeName
   properties: {
     policyType: 'Custom'
@@ -380,14 +133,14 @@ resource policyInitiative 'Microsoft.Authorization/policySetDefinitions@2020-09-
       source: 'Test'
       version: '0.1.0'
     }
-    policyDefinitions: [for (subresource, i) in policySettings: {
-        policyDefinitionId: policyDefinition[i].id
-        policyDefinitionReferenceId: replace('${subresource.name}', ' ', '')
-        parameters: {
-          privateDnsZoneId: {
-            value: '${privateLinkZonesLocation}/${subresource.zone}'
-          }
+    policyDefinitions: [for (subresource, i) in policyDefinitionSettings: {
+      policyDefinitionId: policyDefinition[i].id
+      policyDefinitionReferenceId: replace('${subresource.name}', ' ', '')
+      parameters: {
+        privateDnsZoneId: {
+          value: '${privateLinkZonesLocation}/${subresource.zone}'
         }
-      }]
+      }
+    }]
   }
 }

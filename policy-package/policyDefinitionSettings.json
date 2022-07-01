@@ -1,0 +1,302 @@
+[
+    {
+      "name": "Automation Webhook",
+      "value": "Webhook",
+      "type": "Microsoft.Automation/automationAccounts",
+      "zone": "privatelink.azure-automation.net"
+    },
+    {
+      "name": "Automation DSCAndHybridWorker",
+      "value": "DSCAndHybridWorker",
+      "type": "Microsoft.Automation/automationAccounts",
+      "zone": "privatelink.azure-automation.net"
+    },
+    {
+      "name": "Sql Server",
+      "value": "sqlServer",
+      "type": "Microsoft.Sql/servers",
+      "zone": "privatelink.database.windows.net"
+    },
+    {
+      "name": "Synapse Sql",
+      "value": "sql",
+      "type": "Microsoft.Synapse/workspaces",
+      "zone": "privatelink.sql.azuresynapse.net"
+    },
+    {
+      "name": "Synapse Sql On Demand",
+      "value": "sqlOnDemand",
+      "type": "Microsoft.Synapse/workspaces",
+      "zone": "privatelink.sql.azuresynapse.net"
+    },
+    {
+      "name": "Synapse Dev",
+      "value": "dev",
+      "type": "Microsoft.Synapse/workspaces",
+      "zone": "privatelink.dev.azuresynapse.net"
+    },
+    {
+      "name": "Synapse Studio",
+      "value": "web",
+      "type": "Microsoft.Synapse/workspaces",
+      "zone": "privatelink.azuresynapse.net"
+    },
+    {
+      "name": "Storage Blob",
+      "value": "blob",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.blob.core.windows.net"
+    },
+    {
+      "name": "Storage Table",
+      "value": "table",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.table.core.windows.net"
+    },
+    {
+      "name": "Storage Queue",
+      "value": "queue",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.queue.core.windows.net"
+    },
+    {
+      "name": "Storage File",
+      "value": "file",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.file.core.windows.net"
+    },
+    {
+      "name": "Storage Web",
+      "value": "web",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.web.core.windows.net"
+    },
+    {
+      "name": "Data Lake File System",
+      "value": "dfs",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.dfs.core.windows.net"
+    },
+    {
+      "name": "Cosmos Sql",
+      "value": "sql",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "zone": "privatelink.documents.azure.com"
+    },
+    {
+      "name": "Cosmos MongoDB",
+      "value": "MongoDB",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "zone": "privatelink.mongo.cosmos.azure.com"
+    },
+    {
+      "name": "Cosmos Cassandra",
+      "value": "Cassandra",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "zone": "privatelink.cassandra.cosmos.azure.com"
+    },
+    {
+      "name": "Cosmos Gremlin",
+      "value": "Gremlin",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "zone": "privatelink.gremlin.cosmos.azure.com"
+    },
+    {
+      "name": "Cosmos Table",
+      "value": "Table",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "zone": "privatelink.table.cosmos.azure.com"
+    },
+    {
+      "name": "PostgreSQL",
+      "value": "postgresqlServer",
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "zone": "privatelink.postgres.database.azure.com"
+    },
+    {
+      "name": "MySQL",
+      "value": "mysqlServer",
+      "type": "Microsoft.DBforMySQL/servers",
+      "zone": "privatelink.mysql.database.azure.com"
+    },
+    {
+      "name": "MariaDB",
+      "value": "mariadbServer",
+      "type": "Microsoft.DBforMariaDB/servers",
+      "zone": "privatelink.mariadb.database.azure.com"
+    },
+    {
+      "name": "Key Vault",
+      "value": "vault",
+      "type": "Microsoft.KeyVault/vaults",
+      "zone": "privatelink.vaultcore.azure.net"
+    },
+    {
+      "name": "Azure Search",
+      "value": "searchService",
+      "type": "Microsoft.Search/searchServices",
+      "zone": "privatelink.search.windows.net"
+    },
+    {
+      "name": "Container Registry",
+      "value": "registry",
+      "type": "Microsoft.ContainerRegistry/registries",
+      "zone": "privatelink.azurecr.io"
+    },
+    {
+      "name": "App Configuration",
+      "value": "configurationStores",
+      "type": "Microsoft.AppConfiguration/configurationStores",
+      "zone": "privatelink.azconfig.io"
+    },
+    {
+      "name": "Event Hubs",
+      "value": "namespace",
+      "type": "Microsoft.EventHub/namespaces",
+      "zone": "privatelink.servicebus.windows.net"
+    },
+    {
+      "name": "Service Bus",
+      "value": "namespace",
+      "type": "Microsoft.ServiceBus/namespaces",
+      "zone": "privatelink.servicebus.windows.net"
+    },
+    {
+      "name": "IoT Hub Devices",
+      "value": "iotHub",
+      "type": "Microsoft.Devices/IotHubs",
+      "zone": "privatelink.azure-devices.net"
+    },
+    {
+      "name": "IoT Hub Servicebus",
+      "value": "iotHub",
+      "type": "Microsoft.Devices/IotHubs",
+      "zone": "privatelink.servicebus.windows.net"
+    },
+    {
+      "name": "Relay",
+      "value": "namespace",
+      "type": "Microsoft.Relay/namespaces",
+      "zone": "privatelink.servicebus.windows.net"
+    },
+    {
+      "name": "Event Grid Topic",
+      "value": "topic",
+      "type": "Microsoft.EventGrid/topics",
+      "zone": "privatelink.eventgrid.azure.net"
+    },
+    {
+      "name": "Event Grid Domain",
+      "value": "domain",
+      "type": "Microsoft.EventGrid/domains",
+      "zone": "privatelink.eventgrid.azure.net"
+    },
+    {
+      "name": "Web Apps",
+      "value": "sites",
+      "type": "Microsoft.Web/sites",
+      "zone": "privatelink.azurewebsites.net"
+    },
+    {
+      "name": "Machine Learning API",
+      "value": "amlworkspace",
+      "type": "Microsoft.MachineLearningServices/workspaces",
+      "zone": "privatelink.api.azureml.ms"
+    },
+    {
+      "name": "Machine Learning Notebook",
+      "value": "amlworkspace",
+      "type": "Microsoft.MachineLearningServices/workspaces",
+      "zone": "privatelink.notebooks.azure.net"
+    },
+    {
+      "name": "SignalR",
+      "value": "signalR",
+      "type": "Microsoft.SignalRService/signalR",
+      "zone": "privatelink.service.signalr.net"
+    },
+    {
+      "name": "Monitor",
+      "value": "azuremonitor",
+      "type": "Microsoft.Insights/privateLinkScopes",
+      "zone": "privatelink.monitor.azure.com"
+    },
+    {
+      "name": "Monitor OMS",
+      "value": "azuremonitor",
+      "type": "Microsoft.Insights/privateLinkScopes",
+      "zone": "privatelink.oms.opinsights.azure.com"
+    },
+    {
+      "name": "Monitor ODS",
+      "value": "azuremonitor",
+      "type": "Microsoft.Insights/privateLinkScopes",
+      "zone": "privatelink.ods.opinsights.azure.com"
+    },
+    {
+      "name": "Monitor AgentSvc",
+      "value": "azuremonitor",
+      "type": "Microsoft.Insights/privateLinkScopes",
+      "zone": "privatelink.agentsvc.azure-automation.net"
+    },
+    {
+      "name": "Monitor Blob",
+      "value": "azuremonitor",
+      "type": "Microsoft.Insights/privateLinkScopes",
+      "zone": "privatelink.blob.core.windows.net"
+    },
+    {
+      "name": "Cognitive Services",
+      "value": "account",
+      "type": "Microsoft.CognitiveServices/accounts",
+      "zone": "privatelink.cognitiveservices.azure.com"
+    },
+    {
+      "name": "Azure File Sync",
+      "value": "afs",
+      "type": "Microsoft.StorageSync/storageSyncServices",
+      "zone": "privatelink.afs.azure.net"
+    },
+    {
+      "name": "Data Factory",
+      "value": "dataFactory",
+      "type": "Microsoft.DataFactory/factories",
+      "zone": "privatelink.datafactory.azure.net"
+    },
+    {
+      "name": "Cache for Redis",
+      "value": "redisCache",
+      "type": "Microsoft.Cache/Redis",
+      "zone": "privatelink.redis.cache.windows.net"
+    },
+    {
+      "name": "Cache for Redis Enterprise",
+      "value": "redisCache",
+      "type": "Microsoft.Cache/redisEnterprise",
+      "zone": "privatelink.redisenterprise.cache.azure.net"
+    },
+    {
+      "name": "Purview Account",
+      "value": "account",
+      "type": "Microsoft.Purview/accounts",
+      "zone": "privatelink.purview.azure.com"
+    },
+    {
+      "name": "Purview Portal",
+      "value": "portal",
+      "type": "Microsoft.Purview/accounts",
+      "zone": "privatelink.purviewstudio.azure.com"
+    },
+    {
+      "name": "Digital Twins",
+      "value": "digitalTwinsInstances",
+      "type": "Microsoft.DigitalTwins/digitalTwinsInstances",
+      "zone": "privatelink.digitaltwins.azure.net"
+    },
+    {
+      "name": "HDInsights",
+      "value": "cluster",
+      "type": "Microsoft.HDInsight/clusters",
+      "zone": "privatelink.azurehdinsight.net"
+    }
+]
