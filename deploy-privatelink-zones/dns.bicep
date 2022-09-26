@@ -12,4 +12,8 @@ module virtualNetworkLinks 'modules/virtualNetworkLinks.bicep' = [for (zone, i) 
     vnetLinks: vnetLinks
     privateLinkZone: zone
   }
+
+  dependsOn: [
+    dnsZone
+  ]
 }]
