@@ -6,7 +6,7 @@ resource dnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = [for zone in p
   location: 'global'
 }]
 
-module virtualNetworkLinks 'modules/virtualNetworkLinks.bicep' = [for zone in privateLinkZones: {
+module virtualNetworkLinks 'modules/virtualNetworkLinks.bicep' =  [for zone in privateLinkZones: if (!empty(vnetLinks[0].name)) {
   name: 'vnetlink-${zone}'
   dependsOn: [
     dnsZone
