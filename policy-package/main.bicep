@@ -11,7 +11,7 @@ param privateLinkZonesSubscriptionId string
 param privateLinkZonesResourceGroup string
 
 @description('Define a name for your policy initiative.')
-param policyInitiativeName string
+param policyInitiativeName string = 'Deploy Private Endpoint DNS Configurations'
 
 // ---------------[VARIABLES]----------------
 var privateLinkZonesLocation = '/subscriptions/${privateLinkZonesSubscriptionId}/resourceGroups/${privateLinkZonesResourceGroup}/providers/Microsoft.Network/privateDnsZones'
@@ -96,7 +96,7 @@ resource policyDefinition 'Microsoft.Authorization/policyDefinitions@2021-06-01'
                         {
                           name: replace('${subresource.name}-privateDnsZone', ' ', '')
                           properties: {
-                            privateDnsZoneId: '${privateLinkZonesLocation}/${subresource.zone}'
+                            privateDnsZoneId: '[parameters(\'privateDnsZoneId\')]'
                           }
                         }
                       ]
