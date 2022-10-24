@@ -48,14 +48,32 @@
       "zone": "privatelink.blob.core.windows.net"
     },
     {
+      "name": "Storage Blob Secondary",
+      "value": "blob_secondary",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.blob.core.windows.net"
+    },
+    {
       "name": "Storage Table",
       "value": "table",
       "type": "Microsoft.Storage/storageAccounts",
       "zone": "privatelink.table.core.windows.net"
     },
     {
+      "name": "Storage Table Secondary",
+      "value": "table_secondary",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.table.core.windows.net"
+    },
+    {
       "name": "Storage Queue",
       "value": "queue",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.queue.core.windows.net"
+    },
+    {
+      "name": "Storage Queue Secondary",
+      "value": "queue_secondary",
       "type": "Microsoft.Storage/storageAccounts",
       "zone": "privatelink.queue.core.windows.net"
     },
@@ -72,8 +90,20 @@
       "zone": "privatelink.web.core.windows.net"
     },
     {
+      "name": "Storage Web Secondary",
+      "value": "web_secondary",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.web.core.windows.net"
+    },
+    {
       "name": "Data Lake File System",
       "value": "dfs",
+      "type": "Microsoft.Storage/storageAccounts",
+      "zone": "privatelink.dfs.core.windows.net"
+    },
+    {
+      "name": "Data Lake File System Secondary",
+      "value": "dfs_secondary",
       "type": "Microsoft.Storage/storageAccounts",
       "zone": "privatelink.dfs.core.windows.net"
     },
