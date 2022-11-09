@@ -192,18 +192,6 @@
       "zone": "privatelink.servicebus.windows.net"
     },
     {
-      "name": "IoT Hub Devices",
-      "value": "iotHub",
-      "type": "Microsoft.Devices/IotHubs",
-      "zone": "privatelink.azure-devices.net"
-    },
-    {
-      "name": "IoT Hub Servicebus",
-      "value": "iotHub",
-      "type": "Microsoft.Devices/IotHubs",
-      "zone": "privatelink.servicebus.windows.net"
-    },
-    {
       "name": "Relay",
       "value": "namespace",
       "type": "Microsoft.Relay/namespaces",
@@ -228,52 +216,10 @@
       "zone": "privatelink.azurewebsites.net"
     },
     {
-      "name": "Machine Learning API",
-      "value": "amlworkspace",
-      "type": "Microsoft.MachineLearningServices/workspaces",
-      "zone": "privatelink.api.azureml.ms"
-    },
-    {
-      "name": "Machine Learning Notebook",
-      "value": "amlworkspace",
-      "type": "Microsoft.MachineLearningServices/workspaces",
-      "zone": "privatelink.notebooks.azure.net"
-    },
-    {
       "name": "SignalR",
       "value": "signalR",
       "type": "Microsoft.SignalRService/signalR",
       "zone": "privatelink.service.signalr.net"
-    },
-    {
-      "name": "Monitor",
-      "value": "azuremonitor",
-      "type": "Microsoft.Insights/privateLinkScopes",
-      "zone": "privatelink.monitor.azure.com"
-    },
-    {
-      "name": "Monitor OMS",
-      "value": "azuremonitor",
-      "type": "Microsoft.Insights/privateLinkScopes",
-      "zone": "privatelink.oms.opinsights.azure.com"
-    },
-    {
-      "name": "Monitor ODS",
-      "value": "azuremonitor",
-      "type": "Microsoft.Insights/privateLinkScopes",
-      "zone": "privatelink.ods.opinsights.azure.com"
-    },
-    {
-      "name": "Monitor AgentSvc",
-      "value": "azuremonitor",
-      "type": "Microsoft.Insights/privateLinkScopes",
-      "zone": "privatelink.agentsvc.azure-automation.net"
-    },
-    {
-      "name": "Monitor Blob",
-      "value": "azuremonitor",
-      "type": "Microsoft.Insights/privateLinkScopes",
-      "zone": "privatelink.blob.core.windows.net"
     },
     {
       "name": "Cognitive Services",
