@@ -130,8 +130,7 @@ resource policyInitiative 'Microsoft.Authorization/policySetDefinitions@2021-06-
     displayName: policyInitiativeName
     metadata: {
       category: 'Custom'
-      source: 'Test'
-      version: '0.1.0'
+      version: '2.0.0'
     }
     policyDefinitions: [for (subresource, i) in policyDefinitionSettings: {
       policyDefinitionId: policyDefinition[i].id
