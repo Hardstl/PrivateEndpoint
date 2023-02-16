@@ -138,6 +138,18 @@
       "zone": "privatelink.table.cosmos.azure.com"
     },
     {
+      "name": "Batch Account",
+      "value": "batchAccount",
+      "type": "Microsoft.Batch/batchAccounts",
+      "zone": "privatelink.batch.azure.com"
+    },
+    {
+      "name": "Batch Node Management",
+      "value": "nodeManagement",
+      "type": "Microsoft.Batch/batchAccounts",
+      "zone": "privatelink.batch.azure.com"
+    },
+    {
       "name": "PostgreSQL",
       "value": "postgresqlServer",
       "type": "Microsoft.DBforPostgreSQL/servers",
@@ -162,6 +174,12 @@
       "zone": "privatelink.vaultcore.azure.net"
     },
     {
+      "name": "Key Vault Managed HSMs",
+      "value": "managedHSMs",
+      "type": "Microsoft.KeyVault/managedHSMs",
+      "zone": "privatelink.managedhsm.azure.net"
+    },
+    {
       "name": "Azure Search",
       "value": "searchService",
       "type": "Microsoft.Search/searchServices",
@@ -180,6 +198,12 @@
       "zone": "privatelink.azconfig.io"
     },
     {
+      "name": "Site Recovery",
+      "value": "AzureSiteRecovery",
+      "type": "Microsoft.RecoveryServices/vaults",
+      "zone": "privatelink.siterecovery.windowsazure.com"
+    },
+    {
       "name": "Event Hubs",
       "value": "namespace",
       "type": "Microsoft.EventHub/namespaces",
@@ -190,6 +214,12 @@
       "value": "namespace",
       "type": "Microsoft.ServiceBus/namespaces",
       "zone": "privatelink.servicebus.windows.net"
+    },
+    {
+      "name": "IoT Hub Device Provisioning Service",
+      "value": "iotDps",
+      "type": "Microsoft.Devices/ProvisioningServices",
+      "zone": "privatelink.azure-devices-provisioning.net"
     },
     {
       "name": "Relay",
@@ -208,12 +238,6 @@
       "value": "domain",
       "type": "Microsoft.EventGrid/domains",
       "zone": "privatelink.eventgrid.azure.net"
-    },
-    {
-      "name": "Web Apps",
-      "value": "sites",
-      "type": "Microsoft.Web/sites",
-      "zone": "privatelink.azurewebsites.net"
     },
     {
       "name": "SignalR",
@@ -238,6 +262,12 @@
       "value": "dataFactory",
       "type": "Microsoft.DataFactory/factories",
       "zone": "privatelink.datafactory.azure.net"
+    },
+    {
+      "name": "Data Factory Portal",
+      "value": "portal",
+      "type": "Microsoft.DataFactory/factories",
+      "zone": "privatelink.adf.azure.com"
     },
     {
       "name": "Cache for Redis",
@@ -274,5 +304,53 @@
       "value": "cluster",
       "type": "Microsoft.HDInsight/clusters",
       "zone": "privatelink.azurehdinsight.net"
+    },
+    {
+      "name": "Media Services Key Delivery",
+      "value": "keydelivery",
+      "type": "Microsoft.Media/mediaservices",
+      "zone": "privatelink.media.azure.net"
+    },
+    {
+      "name": "Media Services Live Event",
+      "value": "liveevent",
+      "type": "Microsoft.Media/mediaservices",
+      "zone": "privatelink.media.azure.net"
+    },
+    {
+      "name": "Media Services Streaming Endpoint",
+      "value": "streamingendpoint",
+      "type": "Microsoft.Media/mediaservices",
+      "zone": "privatelink.media.azure.net"
+    },
+    {
+      "name": "Migrate Projects",
+      "value": "Default",
+      "type": "Microsoft.Migrate/MigrateProjects",
+      "zone": "privatelink.prod.migration.windowsazure.com"
+    },
+    {
+      "name": "Bot Service",
+      "value": "Bot",
+      "type": "Microsoft.BotService/botServices",
+      "zone": "privatelink.directline.botframework.com"
+    },
+    {
+      "name": "Bot Service Token",
+      "value": "Token",
+      "type": "Microsoft.BotService/botServices",
+      "zone": "privatelink.token.botframework.com"
+    },
+    {
+      "name": "Databricks UI API",
+      "value": "databricks_ui_api",
+      "type": "Microsoft.Databricks/workspaces",
+      "zone": "privatelink.azuredatabricks.net"
+    },
+    {
+      "name": "Databricks Browser Auth",
+      "value": "browser_authentication",
+      "type": "Microsoft.Databricks/workspaces",
+      "zone": "privatelink.azuredatabricks.net"
     }
 ]
