@@ -304,6 +304,11 @@
       "value": "cluster",
       "type": "Microsoft.HDInsight/clusters",
       "zone": "privatelink.azurehdinsight.net"
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
     },
     {
       "name": "Media Services Key Delivery",
@@ -324,6 +329,15 @@
       "zone": "privatelink.media.azure.net"
     },
     {
+<<<<<<< Updated upstream
+=======
+      "name": "Static Web Apps",
+      "value": "staticSites",
+      "type": "Microsoft.Web/staticSites",
+      "zone": "privatelink.azurestaticapps.net"
+    },
+    {
+>>>>>>> Stashed changes
       "name": "Migrate Projects",
       "value": "Default",
       "type": "Microsoft.Migrate/MigrateProjects",
@@ -352,5 +366,9 @@
       "value": "browser_authentication",
       "type": "Microsoft.Databricks/workspaces",
       "zone": "privatelink.azuredatabricks.net"
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 ]

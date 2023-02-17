@@ -1,0 +1,147 @@
+{
+  "parameters": {
+    "privateDnsZoneIdHcArc": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHcArc",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    },
+    "privateDnsZoneIdHcGuestConfig": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHcGuestConfig",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    },
+    "privateDnsZoneIdHcKubeConfig": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHcKubeConfig",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Network/privateEndpoints"
+        },
+        {
+          "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].privateLinkServiceId",
+          "contains": "Microsoft.HybridCompute"
+        },
+        {
+          "count": {
+            "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+            "where": {
+              "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+              "equals": "hybridcompute"
+            }
+          },
+          "greaterOrEquals": 1
+        }
+      ]
+    },
+    "then": {
+      "effect": "deployIfNotExists",
+      "details": {
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+        "roleDefinitionIds": [
+          "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+        ],
+        "existenceCondition": {
+          "allOf": [
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHcArc')]"
+            },
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHcGuestConfig')]"
+            },
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHcKubeConfig')]"
+            }
+          ]
+        },
+        "deployment": {
+          "properties": {
+            "mode": "incremental",
+            "template": {
+              "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {
+                "privateDnsZoneIdHcArc": {
+                  "type": "String"
+                },
+                "privateDnsZoneIdHcGuestConfig": {
+                  "type": "String"
+                },
+                "privateDnsZoneIdHcKubeConfig": {
+                  "type": "String"
+                },
+                "privateEndpointName": {
+                  "type": "String"
+                },
+                "location": {
+                  "type": "String"
+                }
+              },
+              "resources": [
+                {
+                  "name": "[concat(parameters('privateEndpointName'), '/deployedByPolicy')]",
+                  "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+                  "apiVersion": "2020-03-01",
+                  "location": "[parameters('location')]",
+                  "properties": {
+                    "privateDnsZoneConfigs": [
+                      {
+                        "name": "hcArc-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHcArc')]"
+                        }
+                      },
+                      {
+                        "name": "hcGuestConfig-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHcGuestConfig')]"
+                        }
+                      },
+                      {
+                        "name": "hcKubernetesConfig-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHcKubeConfig')]"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "parameters": {
+              "privateDnsZoneIdHcArc": {
+                "value": "[parameters('privateDnsZoneIdHcArc')]"
+              },
+              "privateDnsZoneIdHcGuestConfig": {
+                "value": "[parameters('privateDnsZoneIdHcGuestConfig')]"
+              },
+              "privateDnsZoneIdHcKubeConfig": {
+                "value": "[parameters('privateDnsZoneIdHcKubeConfig')]"
+              },
+              "privateEndpointName": {
+                "value": "[field('name')]"
+              },
+              "location": {
+                "value": "[field('location')]"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

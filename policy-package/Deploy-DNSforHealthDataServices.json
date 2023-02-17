@@ -1,0 +1,147 @@
+{
+  "parameters": {
+    "privateDnsZoneIdHdsWs": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHdsWs",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    },
+    "privateDnsZoneIdHdsFhir": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHdsFhir",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    },
+    "privateDnsZoneIdHdsDicom": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdHdsDicom",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Network/privateEndpoints"
+        },
+        {
+          "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].privateLinkServiceId",
+          "contains": "Microsoft.HealthcareApis/workspaces"
+        },
+        {
+          "count": {
+            "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+            "where": {
+              "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+              "equals": "healthcareworkspace"
+            }
+          },
+          "greaterOrEquals": 1
+        }
+      ]
+    },
+    "then": {
+      "effect": "deployIfNotExists",
+      "details": {
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+        "roleDefinitionIds": [
+          "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+        ],
+        "existenceCondition": {
+          "allOf": [
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHdsWs')]"
+            },
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHdsFhir')]"
+            },
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdHdsDicom')]"
+            }
+          ]
+        },
+        "deployment": {
+          "properties": {
+            "mode": "incremental",
+            "template": {
+              "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {
+                "privateDnsZoneIdHdsWs": {
+                  "type": "String"
+                },
+                "privateDnsZoneIdHdsFhir": {
+                  "type": "String"
+                },
+                "privateDnsZoneIdHdsDicom": {
+                  "type": "String"
+                },
+                "privateEndpointName": {
+                  "type": "String"
+                },
+                "location": {
+                  "type": "String"
+                }
+              },
+              "resources": [
+                {
+                  "name": "[concat(parameters('privateEndpointName'), '/deployedByPolicy')]",
+                  "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+                  "apiVersion": "2020-03-01",
+                  "location": "[parameters('location')]",
+                  "properties": {
+                    "privateDnsZoneConfigs": [
+                      {
+                        "name": "hdsWorkspace-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHdsWs')]"
+                        }
+                      },
+                      {
+                        "name": "hdsFhir-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHdsFhir')]"
+                        }
+                      },
+                      {
+                        "name": "hdsDicom-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdHdsDicom')]"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "parameters": {
+              "privateDnsZoneIdHdsWs": {
+                "value": "[parameters('privateDnsZoneIdHdsWs')]"
+              },
+              "privateDnsZoneIdHdsFhir": {
+                "value": "[parameters('privateDnsZoneIdHdsFhir')]"
+              },
+              "privateDnsZoneIdHdsDicom": {
+                "value": "[parameters('privateDnsZoneIdHdsDicom')]"
+              },
+              "privateEndpointName": {
+                "value": "[field('name')]"
+              },
+              "location": {
+                "value": "[field('location')]"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
