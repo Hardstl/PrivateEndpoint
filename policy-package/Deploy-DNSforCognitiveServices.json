@@ -1,0 +1,124 @@
+{
+  "parameters": {
+    "privateDnsZoneIdCognitive": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdCognitive",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    },
+    "privateDnsZoneIdCognitiveOpenAI": {
+      "type": "String",
+      "metadata": {
+        "displayName": "privateDnsZoneIdCognitiveOpenAI",
+        "strongType": "Microsoft.Network/privateDnsZones"
+      }
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Network/privateEndpoints"
+        },
+        {
+          "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].privateLinkServiceId",
+          "contains": "Microsoft.CognitiveServices/accounts"
+        },
+        {
+          "count": {
+            "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+            "where": {
+              "field": "Microsoft.Network/privateEndpoints/privateLinkServiceConnections[*].groupIds[*]",
+              "equals": "account"
+            }
+          },
+          "greaterOrEquals": 1
+        }
+      ]
+    },
+    "then": {
+      "effect": "deployIfNotExists",
+      "details": {
+        "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+        "roleDefinitionIds": [
+          "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+        ],
+        "existenceCondition": {
+          "allOf": [
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdCognitive')]"
+            },
+            {
+              "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].privateDnsZoneId",
+              "equals": "[parameters('privateDnsZoneIdCognitiveOpenAI')]"
+            }
+          ]
+        },
+        "deployment": {
+          "properties": {
+            "mode": "incremental",
+            "template": {
+              "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+              "contentVersion": "1.0.0.0",
+              "parameters": {
+                "privateDnsZoneIdCognitive": {
+                  "type": "String"
+                },
+                "privateDnsZoneIdCognitiveOpenAI": {
+                  "type": "String"
+                },
+                "privateEndpointName": {
+                  "type": "String"
+                },
+                "location": {
+                  "type": "String"
+                }
+              },
+              "resources": [
+                {
+                  "name": "[concat(parameters('privateEndpointName'), '/deployedByPolicy')]",
+                  "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+                  "apiVersion": "2020-03-01",
+                  "location": "[parameters('location')]",
+                  "properties": {
+                    "privateDnsZoneConfigs": [
+                      {
+                        "name": "cognitive-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdCognitive')]"
+                        }
+                      },
+                      {
+                        "name": "cognitiveOpenAI-privateDnsZone",
+                        "properties": {
+                          "privateDnsZoneId": "[parameters('privateDnsZoneIdCognitiveOpenAI')]"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "parameters": {
+              "privateDnsZoneIdCognitive": {
+                "value": "[parameters('privateDnsZoneIdCognitive')]"
+              },
+              "privateDnsZoneIdCognitiveOpenAI": {
+                "value": "[parameters('privateDnsZoneIdCognitiveOpenAI')]"
+              },
+              "privateEndpointName": {
+                "value": "[field('name')]"
+              },
+              "location": {
+                "value": "[field('location')]"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
