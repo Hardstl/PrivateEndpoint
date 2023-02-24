@@ -67,9 +67,9 @@
         "privatelink.tip1.powerquery.microsoft.com",
         "privatelink.directline.botframework.com",
         "privatelink.token.botframework.com",
-        "workspace.privatelink.azurehealthcareapis.com",
-        "fhir.privatelink.azurehealthcareapis.com",
-        "dicom.privatelink.azurehealthcareapis.com",
+        "privatelink.workspace.azurehealthcareapis.com",
+        "privatelink.fhir.azurehealthcareapis.com",
+        "privatelink.dicom.azurehealthcareapis.com",
         "privatelink.azuredatabricks.net"
       ]
     },
